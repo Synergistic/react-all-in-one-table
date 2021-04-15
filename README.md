@@ -52,6 +52,7 @@ function MyDataTable() {
     );
 }
 ```
+
 ### Prop Types
 |       Property      |                         Type                        | Required? | Default |                                Description                               |
 |:-------------------:|:---------------------------------------------------:|:---------:|:-------:|:------------------------------------------------------------------------:|
@@ -59,9 +60,11 @@ function MyDataTable() {
 |         data        |                        any[]                        |     x     |         |                           Any array of objects                           |
 |     defaultOrder    |             "desc" \| "asc" \| undefined            |           |  "asc"  |          The default sort order if supplying an order by column          |
 |    defaultOrderBy   |                        string                       |           |    ""   |                 The column/field to sort by on first load                |
+|  defaultSearchTerm  |                        string                       |           |    ""   |               The search term to pre-filter the data with                |
 | ignoreSearchColumns |                       string[]                      |           |    []   |           Fields/columns to ignore when using the search input           |
 |    inputClassName   |                        string                       |           |    ""   |                 CSS class applied to search input element                |
 |      showSearch     |                       boolean                       |           |   TRUE  |                      Show/hide the search input box                      |
 |      onRowClick     |                     () => any                       |           |         |Callback invoked when a user clicks on a table row. `({ event: Event, index: number, rowData: any }): void`|
+
 # Styling
 You can style the table using the css classes described in the [react-virtualized docs](https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md#class-names).

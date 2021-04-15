@@ -8,6 +8,7 @@ const { useState, useEffect } = React
 export type ITableProps = {
     defaultOrder?: "desc" | "asc" | undefined
     defaultOrderBy?: string
+    defaultSearchTerm?: string
     data: any[]
     columns: { dataKey: string, label: string, width: number }[]
     ignoreSearchColumns?: string[]
@@ -16,9 +17,9 @@ export type ITableProps = {
     onRowClick?: () => any;
 }
 
-const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined }) => {
+const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined, defaultSearchTerm = "" }) => {
     const [filteredData, setFilteredData] = useState<any[]>([]);
-    const [searchTerm, setSearchTerm] = useState("")
+    const [searchTerm, setSearchTerm] = useState(defaultSearchTerm)
     const [sortedData, setSortedData] = useState<any[]>([]);
     const [orderBy, setOrderBy] = useState(defaultOrderBy);
     const [order, setOrder] = useState<"desc" | "asc">(defaultOrder);
