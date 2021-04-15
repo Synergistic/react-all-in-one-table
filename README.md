@@ -19,24 +19,6 @@ npm install react-all-in-one-table
 yarn add react-all-in-one-table
 ```
 
-    defaultOrder?: "desc" | "asc" | undefined
-    defaultOrderBy?: string
-    data: any[]
-    columns: { dataKey: string, label: string, width: number }[]
-    ignoreSearchColumns?: string[]
-    showSearch?: boolean
-    inputClassName?: string
-### Prop Types
-|       Property      |                         Type                        | Required? | Default |                                Description                               |
-|:-------------------:|:---------------------------------------------------:|:---------:|:-------:|:------------------------------------------------------------------------:|
-|       columns       | { dataKey: string, label: string, width: number }[] |     x     |         | The header label, field to search on data items, and width of the column |
-|         data        |                        any[]                        |     x     |         |                           Any array of objects                           |
-|     defaultOrder    |             "desc" \| "asc" \| undefined            |           |  "asc"  |          The default sort order if supplying an order by column          |
-|    defaultOrderBy   |                        string                       |           |    ""   |                 The column/field to sort by on first load                |
-| ignoreSearchColumns |                       string[]                      |           |    []   |           Fields/columns to ignore when using the search input           |
-|    inputClassName   |                        string                       |           |    ""   |                 CSS class applied to search input element                |
-|      showSearch     |                       boolean                       |           |   TRUE  |                      Show/hide the search input box                      |
-
 # Usage
 ```
 import Table from 'react-all-in-one-table';
@@ -69,6 +51,16 @@ function MyDataTable() {
     );
 }
 ```
+### Prop Types
+|       Property      |                         Type                        | Required? | Default |                                Description                               |
+|:-------------------:|:---------------------------------------------------:|:---------:|:-------:|:------------------------------------------------------------------------:|
+|       columns       | { dataKey: string, label: string, width: number }[] |     x     |         | The header label, field to search on data items, and width of the column |
+|         data        |                        any[]                        |     x     |         |                           Any array of objects                           |
+|     defaultOrder    |             "desc" \| "asc" \| undefined            |           |  "asc"  |          The default sort order if supplying an order by column          |
+|    defaultOrderBy   |                        string                       |           |    ""   |                 The column/field to sort by on first load                |
+| ignoreSearchColumns |                       string[]                      |           |    []   |           Fields/columns to ignore when using the search input           |
+|    inputClassName   |                        string                       |           |    ""   |                 CSS class applied to search input element                |
+|      showSearch     |                       boolean                       |           |   TRUE  |                      Show/hide the search input box                      |
 
 # Styling
 You can style the table using the css classes described in the [react-virtualized docs](https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md#class-names).
