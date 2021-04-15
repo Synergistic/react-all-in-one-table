@@ -1,5 +1,5 @@
 # react-all-in-one-table
-A table component that comes virtualized, sortabled and searchable, out of the box.
+A table component that comes virtualized, sortable and searchable, out of the box.
 
 [Demo](http://www.vr-together.net/leaderboard)
 
