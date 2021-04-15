@@ -1,6 +1,8 @@
 # react-all-in-one-table
 A table component that comes virtualized, sortabled and searchable, out of the box.
 
+[Demo](http://www.vr-together.net/leaderboard).
+
 
 # Requirements
 ```
@@ -49,4 +51,3 @@ function MyDataTable() {
 }
 ```
 
-See it [in action](http://www.vr-together.net/leaderboard).
