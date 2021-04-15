@@ -1,5 +1,7 @@
 # react-all-in-one-table
- 
+A table component that comes virtualized, sortabled and searchable, out of the box.
+
+
 # Requirements
 ```
 "react": "^17.0.2",
