@@ -1,10 +1,10 @@
 {
   "name": "react-all-in-one-table",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A straight-forward table that is sortable, searchable, and virtualized.",
-  "author": "syngeristic",
+  "author": "synergistic",
   "license": "Apache-2.0",
-  "repository": "react-all-in-one-table",
+  "repository": "https://github.com/Synergistic/react-all-in-one-table",
   "main": "dist/index.js",
   "engines": {
     "node": ">=8",
