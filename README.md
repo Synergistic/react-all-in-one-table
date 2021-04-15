@@ -46,6 +46,7 @@ function MyDataTable() {
                 defaultOrder="desc"
                 defaultOrderBy="points"
                 ignoreSearchColumns={["id"]}
+                onRowClick={({rowData}) => console.log(rowData.name)}
             />
         </div>
     );
@@ -61,6 +62,6 @@ function MyDataTable() {
 | ignoreSearchColumns |                       string[]                      |           |    []   |           Fields/columns to ignore when using the search input           |
 |    inputClassName   |                        string                       |           |    ""   |                 CSS class applied to search input element                |
 |      showSearch     |                       boolean                       |           |   TRUE  |                      Show/hide the search input box                      |
-
+|      onRowClick     |                     () => any                       |           |         |Callback invoked when a user clicks on a table row. `({ event: Event, index: number, rowData: any }): void`|
 # Styling
 You can style the table using the css classes described in the [react-virtualized docs](https://github.com/bvaughn/react-virtualized/blob/master/docs/Table.md#class-names).

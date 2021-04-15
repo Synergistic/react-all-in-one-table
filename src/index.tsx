@@ -5,56 +5,6 @@ import { AutoSizer, Column, Table } from 'react-virtualized';
 
 const { useState, useEffect } = React
 
-export type INestedTableProps = {
-    defaultOrder?: "desc" | "asc" | undefined
-    defaultOrderBy?: string
-    data: any[]
-    columns: { dataKey: string, label: string, width: number }[]
-}
-
-const VirtualizedSortableTable: React.FC<INestedTableProps> = ({ data, columns, defaultOrder = 'asc', defaultOrderBy = '' }) => {
-    const [sortedData, setSortedData] = useState<any[]>([]);
-    const [orderBy, setOrderBy] = useState(defaultOrderBy);
-    const [order, setOrder] = useState<"desc" | "asc">(defaultOrder);
-
-    useEffect(() => {
-        setSortedData(_.orderBy(data, [orderBy], order));
-    }, [data, orderBy, order])
-
-    const handleSort = ({ sortBy }: { sortBy: string }) => {
-        setOrder((orderBy === sortBy && order === 'asc') ? 'desc' : 'asc');
-        setOrderBy(sortBy);
-    };
-
-    return (
-        <AutoSizer>
-            {({ width, height }: { height: number, width: number }) => (
-                <Table
-                    height={height}
-                    width={width}
-                    rowHeight={40}
-                    headerHeight={40}
-                    sortBy={orderBy}
-                    sort={handleSort}
-                    rowCount={sortedData.length}
-                    rowGetter={({ index }: { index: number }) => sortedData[index]}
-                >
-                    {columns.map(({ dataKey, label, width }: { dataKey: string, label: string, width: number }) => {
-                        return (
-                            <Column
-                                width={width ? width : 200}
-                                key={dataKey}
-                                dataKey={dataKey}
-                                label={label}
-                            />
-                        );
-                    })}
-                </Table>
-            )}
-        </AutoSizer>
-    );
-}
-
 export type ITableProps = {
     defaultOrder?: "desc" | "asc" | undefined
     defaultOrderBy?: string
@@ -63,11 +13,15 @@ export type ITableProps = {
     ignoreSearchColumns?: string[]
     showSearch?: boolean
     inputClassName?: string
+    onRowClick?: () => any;
 }
 
-const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '' }) => {
+const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined }) => {
     const [filteredData, setFilteredData] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState("")
+    const [sortedData, setSortedData] = useState<any[]>([]);
+    const [orderBy, setOrderBy] = useState(defaultOrderBy);
+    const [order, setOrder] = useState<"desc" | "asc">(defaultOrder);
 
     useEffect(() => {
         let filtered = data;
@@ -92,22 +46,54 @@ const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSe
         setFilteredData(filtered)
     }, [searchTerm, data, ignoreSearchColumns, showSearch]);
 
-    const updateInput = (e: any) => {
-        setSearchTerm(e.target.value);
-    }
+    useEffect(() => {
+        setSortedData(_.orderBy(filteredData, [orderBy], order));
+    }, [filteredData, orderBy, order])
+
+    const handleSort = ({ sortBy }: { sortBy: string }) => {
+        setOrder((orderBy === sortBy && order === 'asc') ? 'desc' : 'asc');
+        setOrderBy(sortBy);
+    };
 
     return (
         <div style={{ height: '100%' }}>
             {showSearch &&
-                <input placeholder="Search" value={searchTerm} onChange={updateInput} type="text" className={inputClassName} style={{ marginBottom: '8px'}} />
+                <input
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    type="text"
+                    className={inputClassName}
+                    style={{ marginBottom: '8px' }}
+                />
             }
             {filteredData.length > 0 &&
-                <VirtualizedSortableTable
-                    data={filteredData}
-                    columns={columns}
-                    defaultOrderBy={defaultOrderBy}
-                    defaultOrder={defaultOrder}
-                />
+                <AutoSizer>
+                    {({ width, height }: { height: number, width: number }) => (
+                        <Table
+                            height={height}
+                            width={width}
+                            rowHeight={40}
+                            headerHeight={40}
+                            sortBy={orderBy}
+                            sort={handleSort}
+                            rowCount={sortedData.length}
+                            rowGetter={({ index }: { index: number }) => sortedData[index]}
+                            onRowClick={onRowClick}
+                        >
+                            {columns.map(({ dataKey, label, width }: { dataKey: string, label: string, width: number }) => {
+                                return (
+                                    <Column
+                                        width={width ? width : 200}
+                                        key={dataKey}
+                                        dataKey={dataKey}
+                                        label={label}
+                                    />
+                                );
+                            })}
+                        </Table>
+                    )}
+                </AutoSizer>
             }
         </div>
 
