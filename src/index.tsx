@@ -15,6 +15,7 @@ export type ITableProps = {
     showSearch?: boolean
     inputClassName?: string
     onRowClick?: () => any;
+    actionButtons?: JSX.Element[]
 }
 
 const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined, defaultSearchTerm = "", actionButtons = [] }) => {

@@ -1,6 +1,6 @@
 {
   "name": "react-all-in-one-table",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A straight-forward table that is sortable, searchable, and virtualized.",
   "author": "synergistic",
   "license": "Apache-2.0",

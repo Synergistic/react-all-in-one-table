@@ -65,7 +65,7 @@ function MyDataTable() {
 |    inputClassName   |                        string                       |           |    ""   |                 CSS class applied to search input element                |
 |      showSearch     |                       boolean                       |           |   TRUE  |                      Show/hide the search input box                      |
 |      onRowClick     |                     () => any                       |           |         |Callback invoked when a user clicks on a table row. `({ event: Event, index: number, rowData: any }): void`|
-|    actionButtons    |                        any[]                        |           |    []   |Any items provided in the array will be rendered after the searchBar (if applicable)|
+|    actionButtons    |                    JSX.Element[]                    |           |    []   |Any items provided in the array will be rendered after the searchBar (if applicable)|
 
 
 
