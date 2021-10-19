@@ -17,7 +17,7 @@ export type ITableProps = {
     onRowClick?: () => any;
 }
 
-const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined, defaultSearchTerm = "" }) => {
+const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSearchColumns = undefined, defaultOrder = 'asc', defaultOrderBy = '', inputClassName = '', onRowClick = undefined, defaultSearchTerm = "", actionButtons = [] }) => {
     const [filteredData, setFilteredData] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState(defaultSearchTerm)
     const [sortedData, setSortedData] = useState<any[]>([]);
@@ -68,6 +68,7 @@ const App: React.FC<ITableProps> = ({ data, columns, showSearch = true, ignoreSe
                     style={{ marginBottom: '8px' }}
                 />
             }
+            {actionButtons}
             {filteredData.length > 0 &&
                 <AutoSizer>
                     {({ width, height }: { height: number, width: number }) => (
